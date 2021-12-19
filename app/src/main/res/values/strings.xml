@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Ma_reu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_input_object_meeting">Object Meeting</string>
+    <string name="edit_input_room_meeting">Room Meeting</string>
+    <string name="edit_input_date_meeting">Date Meeting</string>
+    <string name="edit_input_hour_start">Start</string>
+    <string name="edit_input_hour_end">End</string>
+    <string name="edit_input_participants_meeting">Participant Meeting</string>
+    <string name="edit_input_participants_info">Participant Info</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_ok">OK</string>
+    <string name="checkbox_title_option1">CheckBox</string>
+    <string name="hint_option1_date">Date Filter</string>
+    <string name="checkbox_title_option2">Date Filter 2</string>
+    <string name="hint_option2_start_date">Start Date</string>
+    <string name="hint_option2_end_date">End Date</string>
+    <string name="fab_content_description" />
+    <string name="no_meetings">No Meetings</string>
+</resources>

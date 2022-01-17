@@ -1,5 +1,7 @@
 package com.example.ma_reu.UI.detailsMeeting.model;
 
+import android.view.View;
+
 public class MeetingUi {
 
     private final String participants;
@@ -8,7 +10,10 @@ public class MeetingUi {
 
     private final int circleColor;
 
-    public MeetingUi(String participants, String title, int circleColor) {
+    private final String id;
+
+    public MeetingUi(String id, String participants, String title, int circleColor) {
+        this.id = id;
         this.participants = participants;
         this.title = title;
         this.circleColor = circleColor;
@@ -25,4 +30,6 @@ public class MeetingUi {
     public int getCircleColor() {
         return circleColor;
     }
+
+    public String getId() {return id;}
 }

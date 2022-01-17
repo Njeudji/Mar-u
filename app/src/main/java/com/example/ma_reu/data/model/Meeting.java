@@ -1,9 +1,11 @@
 package com.example.ma_reu.data.model;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class Meeting {
 
+    private String id;
     private String objectMeeting;
     private String meetingRoom;
     private String date;
@@ -11,17 +13,6 @@ public class Meeting {
     private String hourEnd;
     private String information;
     private List<Participant> listParticipants;
-
-    /**
-     * Constructor
-     * @param objectMeeting : String
-     * @param meetingRoom : String
-     * @param date : String
-     * @param hourStart : String
-     * @param hourEnd : String
-     * @param information : String
-     * @param participants : List<Participant>
-     */
 
     public String getObjectMeeting() {
         return objectMeeting;
@@ -79,7 +70,25 @@ public class Meeting {
         this.listParticipants = listParticipants;
     }
 
-    public Meeting(String objectMeeting, String meetingRoom, String date, String hourStart, String hourEnd, String information, List<Participant> listParticipants) {
+    public String getId() {
+        return id;
+    }
+
+
+    /**
+     * Constructor
+     * @param id : String
+     * @param objectMeeting : String
+     * @param meetingRoom : String
+     * @param date : String
+     * @param hourStart : String
+     * @param hourEnd : String
+     * @param information : String
+     * @param participants : List<Participant>
+     */
+
+    public Meeting(String id, String objectMeeting, String meetingRoom, String date, String hourStart, String hourEnd, String information, List<Participant> listParticipants) {
+        this.id = id;
         this.objectMeeting = objectMeeting;
         this.meetingRoom = meetingRoom;
         this.date = date;

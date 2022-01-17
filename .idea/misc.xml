@@ -4,6 +4,31 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/nkema/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_item.xml" value="0.2692502532928065" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_add_.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_lens_24.xml" value="0.362962962962963" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/fragment_add_meeting.xml" value="0.39557399723374825" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/fragment_list_employees.xml" value="0.40806159420289856" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/fragment_list_meetings.xml" value="0.5" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/layout_cell_meeting.xml" value="0.5" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/layout_dialog_filter_meeting_date.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/layout_dialog_filter_meeting_rooms.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/layout_dialog_meeting_rooms.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/layout/meeting_room_itemview.xml" value="0.3473731884057971" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/menu/menu_filter_date_participant_fragment.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.43703703703703706" />
+        <entry key="..\:/Users/nkema/Desktop/Android_Development/Projet_4/Ma_reu/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.43703703703703706" />
         <entry key="..\:/Users/nkema/Ma_reu/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4842592592592593" />
         <entry key="..\:/Users/nkema/Ma_reu/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.40185185185185185" />
         <entry key="..\:/Users/nkema/Ma_reu/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.4842592592592593" />

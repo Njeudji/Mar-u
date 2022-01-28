@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.ma_reu.R;
 import com.example.ma_reu.UI.createMeeting.AddMeetingFragment;
 import com.example.ma_reu.UI.detailsMeeting.model.MeetingUi;
+import com.example.ma_reu.data.model.Participant;
 import com.example.ma_reu.data.model.Room;
-import com.example.ma_reu.data.repository.RoomRepository;
 import com.example.ma_reu.databinding.FragmentListMeetingsBinding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -37,14 +37,13 @@ public class ListMeetingsFragment extends Fragment {
     FragmentListMeetingsBinding binding;
     ListMeetingFragmentViewModel viewModel;
     MeetingListAdapter adapter;
-    Room room;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        binding = FragmentListMeetingsBinding.inflate(inflater,container,false);
+        binding = FragmentListMeetingsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -61,6 +60,34 @@ public class ListMeetingsFragment extends Fragment {
         };
         binding.recyclerViewListMeetings.setLayoutManager(new LinearLayoutManager(getContext()));
         viewModel = new ViewModelProvider(this).get(ListMeetingFragmentViewModel.class);
+        viewModel.getRoom().observe(getViewLifecycleOwner(), new Observer<List<Room>>() {
+            @Override
+            public void onChanged(List<Room> rooms) {
+                ChipGroup chipGroup = binding.chipGroupRoomItem;
+                chipGroup.removeAllViews();
+                for (int i = 0; i < rooms.size() ; i++) {
+                    Room room = rooms.get(i);
+                    Chip chip = new Chip(getContext());
+                    chip.setId(View.generateViewId());
+                    chip.setText(room.getName());
+                    chip.setEnsureMinTouchTargetSize(false);
+                    chip.setChipBackgroundColorResource(R.color.green);
+                    chip.setCloseIconVisible(false);
+                    chip.setTextColor(getResources().getColor(R.color.white));
+                    chip.setClickable(true);
+                    chip.setCheckable(true);
+                    chipGroup.addView(chip);
+
+                    chip.setTag(room);
+                    chip.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onChangedChecked();
+                        }
+                    });
+                }
+            }
+        });
         viewModel.getViewState().observe(getViewLifecycleOwner(), new Observer<ListMeetingFragmentViewState>() {
             @Override
             public void onChanged(ListMeetingFragmentViewState listMeetingFragmentViewState) {
@@ -68,8 +95,7 @@ public class ListMeetingsFragment extends Fragment {
                         listMeetingFragmentViewState.isDisplayClearButton()
                 ) {
                     binding.refreshButton.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     binding.refreshButton.setVisibility(View.GONE);
                 }
                 adapter.update(listMeetingFragmentViewState.getMeetingsUi());
@@ -82,7 +108,7 @@ public class ListMeetingsFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container_view, new AddMeetingFragment())
                         .addToBackStack(null).commitAllowingStateLoss();
-                        // ADD = rajouter la page
+                // ADD = rajouter la page
                 // Replace = site où il faut mettre login
             }
         });
@@ -94,17 +120,28 @@ public class ListMeetingsFragment extends Fragment {
         });
     }
 
+    private void onChangedChecked() {
+        ChipGroup group = binding.chipGroupRoomItem;
+        final List<Room> rooms = new ArrayList<>();
+        for (Integer checkedChipId : group.getCheckedChipIds()) {
+            final Chip chip = group.findViewById(checkedChipId);
+            Object tag = chip.getTag();
+            rooms.add(((Room) tag));
+        }
+        viewModel.filterByRoom(rooms);
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.menu_filter_date_participant_fragment,menu);
+        inflater.inflate(R.menu.menu_filter_date_participant_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_activity_main_search: {
+            case R.id.filterByDate: {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 int yearStart = calendar.get(Calendar.YEAR);
@@ -120,34 +157,18 @@ public class ListMeetingsFragment extends Fragment {
                 return true;
             }
 
-            case R.id.menu_activity_main_params: {
-                binding.chipGroupRoomItem.removeAllViews();
-                for (viewState.getRooms() room : room) {
-                    Chip chip = new Chip(getContext());
-                    chip.setId(View.generateViewId());
-                    chip.setText(room.getName());
-                    chip.setOnClickListener(v -> viewModel.filterByRoom(room.getName()));
-                    chip.setEnsureMinTouchTargetSize(false);
-                    chip.setChipBackgroundColorResource(R.color.green);
-                    chip.setCloseIconVisible(false);
-                    chip.setTextColor(getResources().getColor(R.color.white));
-                    chip.setClickable(true);
-                    chip.setCheckable(true);
+            case R.id.filterByRoom:
 
-                    binding.chipGroupRoomItem.addView(chip);
-                    chip.setTag(room);
-                }
-                viewModel.filterByRoom(room.getName());
-                return true;
+               binding.horizontalFilter.setVisibility(View.VISIBLE);
             }
+        return true;
+    }
+
+        @Override
+        public void onResume () {
+            super.onResume();
+            viewModel.DisplayMeeting();
+            // avec RxJava on enlève le Resume
         }
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        viewModel.DisplayMeeting();
-        // avec RxJava on enlève le Resume
-    }
-}

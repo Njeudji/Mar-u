@@ -2,6 +2,7 @@ package com.example.ma_reu.data.repository;
 
 import com.example.ma_reu.data.model.Meeting;
 import com.example.ma_reu.data.model.Participant;
+import com.example.ma_reu.data.model.Room;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -90,6 +91,19 @@ public class MeetingRepository {
         }
         return filterRoom;
     }
+
+    public List<Meeting> filterByRoom(List<Room> rooms) {
+        List<Meeting> filterRoom = new ArrayList<>();
+        for (Meeting meeting : LIST_MEETINGS) {
+            for (Room room : rooms) {
+                if (room.getName().equals(meeting.getMeetingRoom())) {
+                    filterRoom.add(meeting);
+                }
+            }
+        }
+        return filterRoom;
+    }
+
 
     //Filtre qui retourne un élément = meeting a supprimé
     public Meeting findMeeting(String id) {

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.provider.CalendarContract;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.utils.ViewState;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -15,6 +16,7 @@ import com.example.ma_reu.data.model.Meeting;
 import com.example.ma_reu.data.model.Participant;
 import com.example.ma_reu.data.model.Room;
 import com.example.ma_reu.data.repository.MeetingRepository;
+import com.example.ma_reu.data.repository.RoomRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,7 @@ import java.util.concurrent.Executor;
 public class ListMeetingFragmentViewModel extends ViewModel {
 
     private final MeetingRepository meetingRepository = MeetingRepository.getINSTANCE();
+    private final RoomRepository roomRepository = RoomRepository.getINSTANCE();
 
     private final MutableLiveData<ListMeetingFragmentViewState> viewState = new MutableLiveData<>();
 
@@ -43,13 +46,15 @@ public class ListMeetingFragmentViewModel extends ViewModel {
 
     private final MutableLiveData<List<Room>> room = new MutableLiveData<>();
 
-    public MutableLiveData<List<Room>> getRoom() {
+    public LiveData<List<Room>> getRoom() {
         return room;
     }
 
     public ListMeetingFragmentViewModel() {
+        room.postValue(roomRepository.getLIST_ROOM());
     }
 
+    @NonNull
     public void DisplayMeeting() {
         List<Meeting> list_meetings = meetingRepository.getLIST_MEETINGS();
         display(list_meetings,false);
@@ -60,16 +65,23 @@ public class ListMeetingFragmentViewModel extends ViewModel {
         for (Meeting meeting : list_meetings) {
             //for(int i = 0; i< list_meetings.size(); ++i) {
             //    Meeting meeting = list_meetings.get(i);
-            MeetingUi m = new MeetingUi(meeting.getId(), generateParticipantString(meeting), meeting.getObjectMeeting() + " - "+  meeting.getMeetingRoom() +  " - " + meeting.getHourStart(), Color.parseColor("#40D909"));
+            MeetingUi m = new MeetingUi(meeting.getId(), generateParticipantString(meeting), meeting.getObjectMeeting() + " - "+  meeting.getMeetingRoom() +  " - " + meeting.getHourStart(),  generateColor(meeting));
             //TODO : rajouter les informations en suivant la note de cadrage
             //TODO: // C'est ici qu'il faudra intégrer le if pour la couleur en fonction de l'heure de la réunion avec un compareTo en comparant la date du téléphone (Calendar.getinstance()) à la date de l'application.
-            Calendar rightNow = Calendar.getInstance(); int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-            {
-                Color.parseColor("#F44336");
-            }
             meetingUi.add(m);
         }
         viewState.postValue(new ListMeetingFragmentViewState(meetingUi,isFiltered));
+    }
+
+    private int generateColor(Meeting meeting) {
+        Calendar rightNow = Calendar.getInstance();
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+        int hourOfMeeting = Integer.valueOf(meeting.getHourStart().split(":")[0]);
+        if (hourOfMeeting < hour){
+            return Color.parseColor("#F44336");
+        }
+        else
+            return Color.parseColor("#40D909");
     }
 
     public void OnDeleteViewModel(MeetingUi meetingUi) {
@@ -85,8 +97,8 @@ public class ListMeetingFragmentViewModel extends ViewModel {
         display(list_meetings,true);
     }
 
-    public void filterByRoom (String room) {
-        List<Meeting> list_meetings = meetingRepository.filterByRoom(room);
+    public void filterByRoom (List<Room> rooms) {
+        List<Meeting> list_meetings = meetingRepository.filterByRoom(rooms);
         display(list_meetings,true);
     }
 
